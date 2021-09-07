@@ -1788,7 +1788,8 @@ CSI P s @			Insert P s (Blank) Character(s) (default = 1) (ICH)
 			case 2004: /* bracketed paste */
 				/* All "pasted" text will be wrapped in `\e[200~ ... \e[201~` */
 				if ((Code.PvtLen == 1) && (Code.Pvt[0] == L'?'))
-					m_Owner->ChangeTermMode(tmc_BracketedPaste, (Code.Action == L'h'));
+					// m_Owner->ChangeTermMode(tmc_BracketedPaste, (Code.Action == L'h'));
+					DumpKnownEscape(Code.pszEscStart, Code.nTotalLen, SrvAnsi::de_Ignored); // ignored for now
 				else
 					DumpUnknownEscape(Code.pszEscStart, Code.nTotalLen);
 				break;
